@@ -1,0 +1,102 @@
+{%extends 'index.html'%}
+
+  {%load static%}
+
+
+
+  {% block titlee %}
+  single product
+
+  {% endblock titlee %}
+
+
+
+  {% block description %}
+  {{setting.description}}
+
+  {% endblock description %}
+
+
+  {% block keyword %}
+
+  {% endblock keyword %}
+
+
+
+  {% block header %}
+  {% include "header.html" %}
+  {% endblock header %}
+
+
+  {% block another_content %}
+
+
+  <div id="breadcrum">
+      <div class="container">
+          <div>
+              <ul class="breadcrumb">
+                  <li> <a href="">Home</a></li>
+                  >>
+                  <li class="active">User Update</li>
+              </ul>
+
+          </div>
+          <div>
+            {%if messages %} {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{message}}
+            </div>
+            {% endfor %} {% endif %}
+        </div>
+
+      </div>
+
+  </div>
+
+
+
+          <!--start from here-->
+          <div class="page-section mb-60">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-sm-12 col-md-12 col-xs-12 col-lg-3 mb-30">
+                          <h1 class="font-weight-bold">User Panel</h1>
+                          {% include 'user_panel.html' %}
+                      </div>
+
+                      <div class="col-sm-12 col-md-12 col-lg-9 col-xs-12">
+                          <h1 class="text-center font-weight-bold">User Profile Update</h1>
+                         
+                          <form method="post" enctype="multipart/form-data">
+                              <div class="form-group">
+                                  {% csrf_token %}
+                                  <fieldset class="form-group">
+                                      {{ user_form.as_p }}
+                                      {{ profile_form.as_p }}
+
+                                  </fieldset>
+                                  <button class="primary-btn" type="submit">Update</button>
+
+                              </div>
+
+                          </form>
+                      </div>
+                  </div>
+
+                  <!--end from here-->
+
+              </div>
+          </div>
+
+
+
+          {% endblock another_content %}
+
+
+
+
+          {% block footer %}
+
+          {% include "footer.html" %}
+
+          {% endblock footer %}
